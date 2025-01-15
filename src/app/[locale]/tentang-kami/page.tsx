@@ -322,7 +322,9 @@ export default function TentangKami() {
           <div className='mt-16 grid grid-cols-1 gap-8 px-4 md:grid-cols-2 lg:grid-cols-4'>
             {dataDirektur.map((item: any, i: any) => (
               <div className='flex flex-col gap-y-3' key={i}>
-                <img src='/image/kangNasduk.png' alt='kangNasduk' />
+                <div className='relative w-full' style={{ paddingTop: '133.33%' }}>
+                  <img src={item.image} alt='Direktur' className='absolute top-0 left-0 w-full h-full object-cover' />
+                </div>
                 <p className='text-2xl font-bold'>{item.nama}</p>
                 <p className='text-xl'>{item.jabatan}</p>
               </div>

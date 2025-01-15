@@ -11,9 +11,9 @@ export default function DashboardPage() {
       <section>
         <Hero />
       </section>
-      <section>
+      {/* <section>
         <Highlight />
-      </section>
+      </section> */}
       <section>
         <Highlight2 />
       </section>
