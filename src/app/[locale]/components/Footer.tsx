@@ -12,87 +12,101 @@ import { useTranslations } from 'next-intl'
 const LINKS = [
   {
     title: 'PRODUK',
-    items: ['Smartgov', 'EFD', 'Citigov', 'Konsultan']
-  },
-  {
-    title: 'INFORMASI',
     items: [
-      'Tentang Kami',
-      'Kebijakan Privasi',
-      'Artikel',
-      'FAQ',
-      'Hubungi Kami',
-      'Karir'
+      { name: 'Smartgov', path: 'smartgov' },
+      { name: 'EFD', path: 'efd' },
+      { name: 'Citigov', path: 'citigov' },
+      { name: 'Konsultan', path: 'konsultan' }
     ]
   }
+  // {
+  //   title: 'INFORMASI',
+  //   items: [
+  //     { name: 'Tentang Kami', path: 'tentang-kami' },
+  //     { name: 'Kebijakan Privasi', path: 'kebijakan-privasi' },
+  //     { name: 'Artikel', path: 'artikel' },
+  //     { name: 'FAQ', path: 'faq' },
+  //     { name: 'Hubungi Kami', path: 'hubungi-kami' },
+  //     { name: 'Karir', path: 'karir' },
+  //   ],
+  // },
 ]
 
 const CURRENT_YEAR = new Date().getFullYear()
 
 export function Footer() {
   const t = useTranslations('')
+
+  const handleWhatsAppClick = () => {
+    const basePath = window.location.pathname.split('/')[1] // Extract base path (e.g., "en" or "id")
+    const newPath = `/${basePath}/hubungi-kami` // Construct the new path
+    window.open(newPath, '_blank') // Open the new path in a new tab
+  }
+
+  const getLink = (path: string) => {
+    const basePath = window.location.pathname.split('/')[1] // Extract base path (e.g., "en" or "id")
+    return `/${basePath}/produk/${path}`
+  }
+
   return (
-    <footer className='px-8 pb-8 pt-24'>
-      <div className='border-blue-gray-50 container mx-auto flex flex-col border-t'>
-        <div className='grid !w-full grid-cols-1 gap-x-10 lg:mt-10 lg:grid-cols-3'>
+    <footer className='bg-gray-100 px-8 pb-8 pt-24 text-gray-800'>
+      <div className='container mx-auto flex flex-col border-t border-gray-300'>
+        <div className='grid w-full grid-cols-1 gap-x-10 lg:mt-10 lg:grid-cols-3'>
           <div className='col mb-5'>
-            <img src='/image/logo-footer-cartenz.svg' alt='' />
-            <p className='mb-4 mt-8 text-sm font-normal'>
-              {t('CartenzLocation')}
-            </p>
+            <img
+              src='/image/logo_cartenz_abu.png'
+              alt='Cartenz Logo'
+              className='mb-4'
+            />
+            <p
+              className='mb-4 mt-8 text-sm font-normal'
+              dangerouslySetInnerHTML={{ __html: t('CartenzLocation') }}
+            />
           </div>
 
           <div className='col mx-auto mb-10'>
-            <h6 className='text-blue-gray-900 text-xl'>{t('IkutiKami')}</h6>
-            <div className='my-4 flex gap-4'>
+            <h6 className='mb-4 text-xl text-blue-gray-900'>{t('IkutiKami')}</h6>
+            <div className='my-4 flex justify-between gap-4'>
               <a
-                href='https://github.com/yahyaparvar/nextjs-template'
+                href='https://www.facebook.com/cartenztechnologyinternational'
                 target='_blank'
+                rel='noopener noreferrer'
+                className='flex size-8 flex-grow items-center justify-center transition-colors hover:text-blue-500'
               >
-                <div className='size-8'>
-                  <FacebookIcon />
-                </div>
+                <FacebookIcon />
               </a>
               <a
-                href='https://github.com/yahyaparvar/nextjs-template'
+                href='https://www.instagram.com/cartenztechnology/'
                 target='_blank'
+                rel='noopener noreferrer'
+                className='flex size-8 flex-grow items-center justify-center transition-colors hover:text-pink-500'
               >
-                <div className='size-8'>
-                  <InstagramIcon />
-                </div>
+                <InstagramIcon />
               </a>
               <a
-                href='https://github.com/yahyaparvar/nextjs-template'
+                href='https://www.tiktok.com/@cartenztechnology'
                 target='_blank'
+                rel='noopener noreferrer'
+                className='flex size-8 flex-grow items-center justify-center transition-colors hover:text-red-500'
               >
-                <div className='size-8'>
-                  <TiktokIcon />
-                </div>
+                <TiktokIcon />
               </a>
               <a
-                href='https://github.com/yahyaparvar/nextjs-template'
+                href='https://www.youtube.com/channel/UCHS5IQaoNke7ony6tzzed0A'
                 target='_blank'
+                rel='noopener noreferrer'
+                className='flex size-8 flex-grow items-center justify-center transition-colors hover:text-red-600'
               >
-                <div className='size-8'>
-                  <TwitterIcon />
-                </div>
-              </a>
-              <a
-                href='https://github.com/yahyaparvar/nextjs-template'
-                target='_blank'
-              >
-                <div className='size-8'>
-                  <YoutubeIcon />
-                </div>
+                <YoutubeIcon />
               </a>
             </div>
             <div>
               <Button
                 size='large'
                 type='button'
-                className='text-destructive inline-flex w-fit min-w-[95px] items-center justify-between gap-3 bg-secondary hover:bg-button'
+                className='inline-flex w-fit min-w-[95px] items-center justify-between gap-3 bg-blue-500 text-white transition-colors hover:bg-blue-600'
                 id='contact-us'
-                onClick={() => {}}
+                onClick={handleWhatsAppClick}
               >
                 <FaWhatsapp size={30} />
                 <span className='ml-2'>{t('contactUs')}</span>
@@ -103,14 +117,14 @@ export function Footer() {
           <div className='col mb-10 flex gap-5 lg:gap-36'>
             {LINKS.map(({ title, items }) => (
               <ul key={title} className='flex flex-col gap-y-4'>
-                <h6 className='text-blue-gray-900 mb-4'>{title}</h6>
-                {items.map(link => (
-                  <li key={link}>
+                <h6 className='mb-4 text-xl text-blue-gray-900'>{t(title)}</h6>
+                {items.map(({ name, path }) => (
+                  <li key={name}>
                     <a
-                      href='#'
-                      className='py-1 font-normal transition-colors hover:!text-gray-900'
+                      href={getLink(path)}
+                      className='py-1 font-normal transition-colors hover:text-gray-900'
                     >
-                      {link}
+                      {name}
                     </a>
                   </li>
                 ))}
@@ -118,8 +132,8 @@ export function Footer() {
             ))}
           </div>
         </div>
-        <div className='mt-16 font-normal md:text-center'>
-          © Copyright 2024 PT Cartenz Technology Indonesia All rights reserved.
+        <div className='mt-16 text-center font-normal text-gray-600'>
+          © Copyright {CURRENT_YEAR} Cartenz Technology. All rights reserved.
         </div>
       </div>
     </footer>

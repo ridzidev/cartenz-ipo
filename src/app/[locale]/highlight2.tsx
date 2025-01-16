@@ -87,11 +87,11 @@ export function Highlight2() {
       description: t('features4')
     },
     {
-      title: '300 Ribu',
+      title: '300 ' + t('Ribu'),
       description: t('features5')
     },
     {
-      title: '2,5 Juta',
+      title: '2,5 ' + t('Juta'),
       description: t('features6')
     }
   ]
