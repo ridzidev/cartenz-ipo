@@ -198,9 +198,12 @@ export default function TentangKami() {
           )}
         </div>
       </section>
+
       <section id='perkenalan' ref={perkenalanRef} className='mt-10'>
         <div className='container'>
+          {/* Section 1: Introduction */}
           <div className='grid grid-cols-1 overflow-hidden rounded-[40px] bg-tertiary md:grid-cols-2'>
+            {/* Left Content */}
             <div className='px-8 py-10 md:px-16 md:py-20'>
               <h1 className='text-4xl font-bold md:text-6xl'>
                 {t(dataPerkenalan[0].judul)}
@@ -209,15 +212,19 @@ export default function TentangKami() {
                 {t(dataPerkenalan[0].text)}
               </p>
             </div>
-            <div className='flex h-[300px] justify-center bg-slate-400 md:h-[611px]'>
+            {/* Right Content */}
+            <div className='flex h-[300px] justify-center bg-tertiary md:h-[611px]'>
               <img src={dataPerkenalan[0].img} alt='cartenzFamily' />
             </div>
           </div>
         </div>
 
-        <div className='container'>
-          <div className='py-20'>
-            <p className='text-center text-3xl font-bold'>{t('BudayaKami')}</p>
+        <br></br>
+
+        {/* Section 2: Culture */}
+        <div className='container px-6'>
+          <div className='rounded-[40px] py-20'>
+            {/* <p className='text-center text-3xl font-bold'>{t('BudayaKami')}</p> */}
             <h1 className='customShadow my-10 text-center font-poppins text-7xl font-bold tracking-widest text-[#0199cb] lg:text-9xl lg:leading-[192px]'>
               {t('Presisi')}
             </h1>
@@ -236,103 +243,162 @@ export default function TentangKami() {
                       src={item.srcImg}
                       alt='Random image'
                     />
-                    {/* <div className='absolute inset-0 rounded-md bg-gray-700 opacity-60'></div> */}
                     <div className='absolute inset-0 flex items-center justify-center'>
                       <h2 className='text-3xl font-bold uppercase'>
                         {t(item.judul)}
                       </h2>
                     </div>
                   </div>
-                  <div className='p-4 text-xl'>
-                    <p>{t(item.text)}</p> 
-                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
+        <br></br>
+
+        {/* Section 3: Mission */}
         <div className='container relative'>
-          <div className='py-20'>
+          <div className='rounded-[40px] bg-tertiary py-20'>
             <h1 className='text-left text-3xl font-bold uppercase lg:text-center'>
               {t('MisiKami')}
             </h1>
             <div className='mt-10 flex flex-col gap-14 px-4 text-lg md:mt-20 md:px-12 md:text-xl'>
               <div className='misikami flex flex-col items-center justify-between gap-8 md:flex-row'>
-                <p className='w-full md:w-auto'>
-                  <span></span>
-                  {t(dataMisiKami[0]['1'])}
-                </p>
-                <p className='w-full md:w-auto'>
-                  <span></span>
-                  {t(dataMisiKami[0]['2'])}
-                </p>
-                <p className='w-full md:w-auto'>
-                  <span></span>
-                  {t(dataMisiKami[0]['3'])}
-                </p>
+                <p className='w-full md:w-auto'>{t(dataMisiKami[0]['1'])}</p>
+                <p className='w-full md:w-auto'>{t(dataMisiKami[0]['2'])}</p>
+                <p className='w-full md:w-auto'>{t(dataMisiKami[0]['3'])}</p>
               </div>
               <div className='misikami flex flex-col items-center justify-between gap-8 md:flex-row md:px-10'>
-                <p className='w-full md:w-auto'>
-                  <span></span>
-                  {t(dataMisiKami[0]['4'])}
-                </p>
-                <p className='w-full md:w-auto'>
-                  <span></span>
-                  {t(dataMisiKami[0]['6'])}
-                </p>
+                <p className='w-full md:w-auto'>{t(dataMisiKami[0]['4'])}</p>
+                <p className='w-full md:w-auto'>{t(dataMisiKami[0]['6'])}</p>
               </div>
               <div className='misikami flex flex-col items-center justify-between gap-8 md:flex-row'>
-                <p className='w-full md:w-auto'>
-                  <span></span>
-                  {t(dataMisiKami[0]['5'])}
-                </p>
-                <p className='w-full md:w-auto'>
-                  <span></span>
-                  {t(dataMisiKami[0]['7'])}
-                </p>
+                <p className='w-full md:w-auto'>{t(dataMisiKami[0]['5'])}</p>
+                <p className='w-full md:w-auto'>{t(dataMisiKami[0]['7'])}</p>
               </div>
             </div>
           </div>
+          <br></br>
 
+          {/* Visual Enhancements */}
           <span className='absolute h-[2px] w-full bg-secondary'></span>
           <span className='absolute right-8 top-32 hidden h-[600px] w-[2px] bg-secondary md:block'></span>
 
-          <div className='py-20'>
-            <h1 className='text-left text-3xl font-bold capitalize lg:text-center'>
-              {t('PerjalananKami')}
-            </h1>
-            <div className='mt-10 grid grid-cols-1 gap-6 px-4 text-lg md:mt-16 md:grid-cols-2 md:px-6 md:text-xl lg:grid-cols-4'>
-              {dataPerjalananKami?.map((item: any, i: any) => (
+          <br></br>
+          {/* Section 4: Journey */}
+          <section
+            id='perjalananKami'
+            ref={perkenalanRef}
+            className='to-tertiary/90 bg-gradient-to-b from-tertiary py-24'
+          >
+            <div className='container mx-auto flex flex-col items-center px-6 lg:px-16'>
+              {/* Enhanced Header */}
+              <h1
+                className='relative mb-16 text-center text-4xl font-bold
+         text-gray-800 lg:text-5xl'
+              >
+                <span className='relative inline-block'>
+                  {t('PerjalananKami')}
+                  <div
+                    className='bg-primary/60 absolute bottom-0 left-0 h-1 w-full
+            -skew-x-12 transform'
+                  ></div>
+                </span>
+              </h1>
+
+              <div className='relative mt-10 flex w-full flex-col items-center justify-center lg:flex-row'>
+                {/* Enhanced Timeline Line */}
                 <div
-                  className='flex flex-col gap-y-6 rounded-lg bg-card-primary px-6 py-8 drop-shadow-lg md:px-8 md:py-12'
-                  key={i}
-                >
-                  <p className='text-2xl font-bold'>{item.tahun}</p>
-                  <p className=''>{item.text}</p>
+                  className='from-primary/20 to-primary/20 absolute top-1/2 h-1 w-full
+            -translate-y-1/2 transform bg-gradient-to-r via-primary'
+                ></div>
+
+                <div className='flex w-full flex-col items-center justify-center gap-8 lg:flex-row'>
+                  {dataPerjalananKami?.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className='relative mb-16 flex w-full flex-col items-center lg:mb-0 lg:w-1/2'
+                    >
+                      {/* Enhanced Timeline Dot */}
+                      <div
+                        className={`absolute top-1/2 z-10 flex h-8 w-8
+               -translate-y-1/2 transform items-center justify-center rounded-full
+               shadow-lg
+               ${
+                 index % 2 === 0
+                   ? 'shadow-primary/30 bg-primary text-white'
+                   : 'shadow-primary/20 border-2 border-primary bg-white text-primary'
+               }`}
+                      >
+                        <span className='text-xs font-bold'>{item.tahun}</span>
+                      </div>
+
+                      {/* Enhanced Content Container with Fixed Width */}
+                      <div
+                        className={`flex min-h-[300px] w-full max-w-[350px] flex-col items-center
+               rounded-xl bg-white p-6 shadow-lg
+               ${index % 2 === 0 ? 'lg:items-start lg:text-right' : 'lg:items-end lg:text-left'}`}
+                        data-aos='fade-up'
+                        data-aos-delay={index * 100}
+                      >
+                        {/* Enhanced Title */}
+                        <h2
+                          className='border-primary/20 mb-4 w-full border-b-2 pb-2
+                 text-xl font-bold text-gray-800 lg:text-2xl'
+                        >
+                          {item.judul}
+                        </h2>
+
+                        {/* Enhanced Text Content with Wrapping */}
+                        <p className='overflow-wrap break-word mb-8 w-full leading-relaxed text-gray-600'>
+                          {item.text}
+                        </p>
+
+                        {/* Enhanced Additional Info */}
+                        <div className='mt-auto w-full px-4'>
+                          <p
+                            className='overflow-wrap break-word rounded-lg border border-gray-100
+                   bg-gray-50 p-3 text-sm italic text-gray-500'
+                          >
+                            {item.keterangan}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <br></br>
+
+      <section className='bg-tertiary' id='direktur' ref={direkturRef}>
+        <div className='container py-20'>
+          <h1 className='text-center text-3xl font-bold'>{t('Direktur')}</h1>
+          <div className='mt-16 flex justify-center'>
+            <div className='flex max-w-sm transform flex-col items-center rounded-lg bg-white p-6 shadow-lg transition-transform hover:scale-105'>
+              <div
+                className='relative w-full'
+                style={{ paddingTop: '133.33%' }}
+              >
+                <img
+                  src={dataDirektur[0].image} // Assuming you have only one item
+                  alt='Direktur'
+                  className='absolute left-0 top-0 h-full w-full rounded-lg object-cover'
+                />
+              </div>
+              <p className='mt-4 text-2xl font-bold'>{dataDirektur[0].nama}</p>
+              <p className='text-xl text-gray-600'>{dataDirektur[0].jabatan}</p>
             </div>
           </div>
         </div>
       </section>
-      <section className='bg-tertiary' id='direktur' ref={direkturRef}>
-        <div className='container py-20'>
-          <h1 className='text-center text-3xl font-bold'>{t('Direktur')}</h1>
-          <div className='mt-16 grid grid-cols-1 gap-8 px-4 md:grid-cols-2 lg:grid-cols-4'>
-            {dataDirektur.map((item: any, i: any) => (
-              <div className='flex flex-col gap-y-3' key={i}>
-                <div className='relative w-full' style={{ paddingTop: '133.33%' }}>
-                  <img src={item.image} alt='Direktur' className='absolute top-0 left-0 w-full h-full object-cover' />
-                </div>
-                <p className='text-2xl font-bold'>{item.nama}</p>
-                <p className='text-xl'>{item.jabatan}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className='bg-tertiary' id='tenagaAhli' ref={tenagaAhliRef}>
+
+      {/* <section className='bg-tertiary' id='tenagaAhli' ref={tenagaAhliRef}>
         <div className='container py-20'>
           <h1 className='text-center text-3xl font-bold'>{t('TenagaAhli')}</h1>
           <div className='mt-16 grid grid-cols-1 gap-8 px-4 md:grid-cols-2 lg:grid-cols-4'>
@@ -345,7 +411,8 @@ export default function TentangKami() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      {/* 
       <section
         id='penghargaanPublikasi'
         ref={penghargaanPublikasiRef}
@@ -493,7 +560,7 @@ export default function TentangKami() {
             </Carousel>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }
