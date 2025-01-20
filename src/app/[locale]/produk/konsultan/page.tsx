@@ -39,7 +39,7 @@ export default function Konsultan() {
             <img src={url} alt={url + index} key={index} />
           ))}
         </div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center my-20'>
           <Button className='rounded-3xl !bg-[#0199CB] !px-5 !py-3 hover:!bg-[#01b3ee]'>
             Hubungi Kami
           </Button>

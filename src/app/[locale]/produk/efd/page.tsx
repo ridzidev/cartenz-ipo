@@ -10,6 +10,12 @@ export default function Efd() {
   const t = useTranslations('')
   const { dataProdukEfd, isLoading, isError } = useProdukEfd()
 
+  const handleWhatsAppClick = () => {
+    const basePath = window.location.pathname.split('/')[1] // Extract base path (e.g., "en" or "id")
+    const newPath = `/${basePath}/hubungi-kami` // Construct the new path
+    window.open(newPath, '_blank') // Open the new path in a new tab
+  }
+
   if (isLoading) {
     return <div>Loading...</div>
   }
@@ -30,7 +36,11 @@ export default function Efd() {
 
       <div className='my-20 flex flex-col items-center gap-8 md:flex-row'>
         <div className='h-[400px] w-full flex-shrink-0 rounded-3xl bg-slate-500 md:h-[656px] md:w-[438px]'>
-          foto
+          <img
+              src={formattedTextEnter(t(dataProdukEfd[0].gambar1))}
+              alt='Product Image'
+              className='h-full w-full rounded-3xl object-cover'
+            />
         </div>
         <div className='misikami w-full md:w-auto'>
           <p className='whitespace-pre-line text-xl md:text-2xl md:leading-9'>
@@ -39,8 +49,8 @@ export default function Efd() {
           </p>
         </div>
       </div>
-      <div className='flex justify-center'>
-        <Button className='rounded-3xl !bg-[#0199CB] !px-5 !py-3 hover:!bg-[#01b3ee]'>
+      <div className='flex justify-center my-20  '>
+        <Button className='rounded-3xl !bg-[#0199CB] !px-5 !py-3 hover:!bg-[#01b3ee] ' onClick={handleWhatsAppClick}>
           Ajukan Uji Coba
         </Button>
       </div>

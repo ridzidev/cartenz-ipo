@@ -19,33 +19,32 @@ const menuItems = [
 export default function ProductLayout({ children }: ProductLayoutProps) {
   const pathname = usePathname()
   return (
-    <div className='mt-[100px] flex min-h-screen flex-col'>
-      <nav className='bg-tertiary'>
-        <ul className='flex flex-wrap items-center justify-center px-4 py-4 md:justify-around md:px-16 lg:px-32'>
+    <div className='mt-24 flex min-h-screen flex-col'>
+      <nav className='bg-tertiary py-4'>
+        <ul className='flex flex-wrap items-center justify-center gap-4 px-4 md:justify-around md:px-16 lg:px-32'>
           {menuItems.map(({ href, label, imgSrc }) => {
             const isActive = pathname.includes(href)
             return (
-              <li key={href} className=''>
+              <li key={href}>
                 <Link
                   href={href}
-                  className={`flex flex-col items-center transition-all duration-300 ease-in-out hover:scale-105 ${
+                  className={`flex flex-col items-center transition-transform duration-300 hover:scale-105 ${
                     isActive
                       ? 'text-primary'
                       : 'text-gray-500 hover:text-gray-700'
                   }`}
                 >
-                  <div className='relative h-4 w-10 md:h-10 md:w-28 lg:h-20 lg:w-36'>
+                  <div className='relative h-6 w-16 md:h-10 md:w-24 lg:h-16 lg:w-28'>
                     <Image
                       src={imgSrc}
                       alt={`${label} icon`}
                       fill
-                      style={{ objectFit: 'contain' }}
-                      className={
+                      className={`object-contain transition-opacity ${
                         isActive ? 'opacity-100' : 'opacity-50 hover:opacity-75'
-                      }
+                      }`}
                     />
                   </div>
-                  <span className='text-xs md:text-base'>{label}</span>
+                  {/* <span className='mt-1 text-sm md:text-base'>{label}</span> */}
                 </Link>
               </li>
             )

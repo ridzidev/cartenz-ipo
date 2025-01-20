@@ -10,6 +10,12 @@ export default function Smartgov() {
   const t = useTranslations('')
   const { dataProdukSmartgov, isLoading, isError } = useProdukSmartgov()
 
+  const handleWhatsAppClick = () => {
+    const basePath = window.location.pathname.split('/')[1] // Extract base path (e.g., "en" or "id")
+    const newPath = `/${basePath}/hubungi-kami` // Construct the new path
+    window.open(newPath, '_blank') // Open the new path in a new tab
+  }
+
   if (isLoading) {
     return <div>Loading...</div>
   }
@@ -41,22 +47,33 @@ export default function Smartgov() {
 
       <div className='my-20 flex flex-col items-center gap-8 md:flex-row'>
         <div className='h-[400px] w-full flex-shrink-0 rounded-3xl bg-slate-500 md:h-[656px] md:w-[438px]'>
-          foto
+          <img
+            src={formattedTextEnter(t(dataProdukSmartgov[0].gambar1))}
+            alt='Product Image'
+            className='h-full w-full rounded-3xl object-cover'
+          />
         </div>
         <div className='misikami w-full md:w-auto'>
           <p className='whitespace-pre-line text-xl md:text-2xl md:leading-9'>
-            <span></span>
             {formattedTextEnter(t(dataProdukSmartgov[0].text3))}
           </p>
         </div>
       </div>
-      <div className='my-20 flex flex-wrap items-center justify-center gap-x-48 gap-y-10'>
+
+      <h2 className='mb-6 text-left text-2xl font-bold'>Pemerintah Daerah</h2>
+      <div className='my-20 flex flex-wrap items-center justify-center gap-12'>
         {urlLogo.map((url, index) => (
-          <img src={url} alt={url + index} key={index} />
+          <img
+            key={index}
+            src={url}
+            alt={`Logo ${index}`}
+            className='h-20 w-auto'
+          />
         ))}
       </div>
-      <div className='flex justify-center'>
-        <Button className='rounded-3xl !bg-[#0199CB] !px-5 !py-3 hover:!bg-[#01b3ee]'>
+
+      <div className='my-20 flex justify-center'>
+        <Button className='rounded-3xl bg-[#0199CB] px-5 py-3 hover:bg-[#01b3ee] ' onClick={handleWhatsAppClick}>
           Ajukan Uji Coba
         </Button>
       </div>

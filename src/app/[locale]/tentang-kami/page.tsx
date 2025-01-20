@@ -82,12 +82,12 @@ export default function TentangKami() {
     if (direkturRef.current) {
       observer.observe(direkturRef.current)
     }
-    if (tenagaAhliRef.current) {
-      observer.observe(tenagaAhliRef.current)
-    }
-    if (penghargaanPublikasiRef.current) {
-      observer.observe(penghargaanPublikasiRef.current)
-    }
+    // if (tenagaAhliRef.current) {
+    //   observer.observe(tenagaAhliRef.current)
+    // }
+    // if (penghargaanPublikasiRef.current) {
+    //   observer.observe(penghargaanPublikasiRef.current)
+    // }
 
     return () => {
       if (perkenalanRef.current) {
@@ -96,12 +96,12 @@ export default function TentangKami() {
       if (direkturRef.current) {
         observer.unobserve(direkturRef.current)
       }
-      if (tenagaAhliRef.current) {
-        observer.unobserve(tenagaAhliRef.current)
-      }
-      if (penghargaanPublikasiRef.current) {
-        observer.unobserve(penghargaanPublikasiRef.current)
-      }
+      // if (tenagaAhliRef.current) {
+      //   observer.unobserve(tenagaAhliRef.current)
+      // }
+      // if (penghargaanPublikasiRef.current) {
+      //   observer.unobserve(penghargaanPublikasiRef.current)
+      // }
     }
   }, [])
 
@@ -164,7 +164,7 @@ export default function TentangKami() {
             <div className='absolute inset-x-0 bottom-0 h-[4px] rounded-b-lg bg-[#0199cb]'></div>
           )}
         </div>
-        <div
+        {/* <div
           className={`relative text-base font-bold ${activeSection === 'tenagaAhli' || isHovered === 'tenagaAhli' ? 'text-[#0199cb]' : 'text-[#828282]'}`}
           onMouseEnter={() => setIsHovered('tenagaAhli')}
           onMouseLeave={() => setIsHovered('')}
@@ -196,7 +196,7 @@ export default function TentangKami() {
             isHovered === 'penghargaanPublikasi') && (
             <div className='absolute inset-x-0 bottom-0 h-[4px] rounded-b-lg bg-[#0199cb]'></div>
           )}
-        </div>
+        </div> */}
       </section>
 
       <section id='perkenalan' ref={perkenalanRef} className='mt-10'>
@@ -264,6 +264,8 @@ export default function TentangKami() {
               {t('MisiKami')}
             </h1>
             <div className='mt-10 flex flex-col gap-14 px-4 text-lg md:mt-20 md:px-12 md:text-xl'>
+              <p className='w-full md:w-auto'>{t(dataMisiKami[0]['1'])}</p>
+              {/*                 
               <div className='misikami flex flex-col items-center justify-between gap-8 md:flex-row'>
                 <p className='w-full md:w-auto'>{t(dataMisiKami[0]['1'])}</p>
                 <p className='w-full md:w-auto'>{t(dataMisiKami[0]['2'])}</p>
@@ -276,7 +278,7 @@ export default function TentangKami() {
               <div className='misikami flex flex-col items-center justify-between gap-8 md:flex-row'>
                 <p className='w-full md:w-auto'>{t(dataMisiKami[0]['5'])}</p>
                 <p className='w-full md:w-auto'>{t(dataMisiKami[0]['7'])}</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <br></br>
@@ -397,6 +399,33 @@ export default function TentangKami() {
           </div>
         </div>
       </section>
+
+      {/* handle 3 */}
+      {/* <section className='bg-tertiary' id='direktur' ref={direkturRef}>
+        <div className='container py-20'>
+          <h1 className='text-center text-3xl font-bold'>{t('Direktur')}</h1>
+          <div className='mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 justify-center'>
+            {dataDirektur.map((direktur, index) => (
+              <div
+                key={index}
+                className='rounded-lg bg-white p-4 shadow-lg transform hover:scale-105'
+              >
+                <div className='relative w-full' style={{ paddingTop: '133.33%' }}>
+                  <img
+                    src={direktur.image} // Use the image from the current director object
+                    alt='Direktur'
+                    className='absolute left-0 top-0 h-full w-full rounded-lg object-cover'
+                  />
+                </div>
+                <p className='mt-4 text-2xl font-bold'>{direktur.nama}</p>
+                <p className='text-xl text-gray-600'>{direktur.jabatan}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+
 
       {/* <section className='bg-tertiary' id='tenagaAhli' ref={tenagaAhliRef}>
         <div className='container py-20'>
