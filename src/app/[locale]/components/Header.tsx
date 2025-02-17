@@ -101,7 +101,7 @@ export const Header: FC<Props> = ({ locale }) => {
     <div
       className={`fixed top-0 z-50 mx-auto w-full border-0 md:h-[100px] ${isHomePage && isScrolling ? 'bg-secondary' : isHomePage ? 'bg-black bg-opacity-25' : 'bg-secondary'}`}
     >
-      <div className='container mx-auto h-full items-center gap-6 py-5 text-white md:flex md:justify-between'>
+      <div className='container mx-auto max-w-none px-6 lg:px-20 h-full items-center gap-6 py-5 text-white md:flex md:justify-between'>
         <div className='flex w-full items-center justify-between md:w-auto'>
           <Link
             lang={locale}

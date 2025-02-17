@@ -23,6 +23,7 @@ export default function Smartgov() {
   if (isError) {
     return <div>Error</div>
   }
+
   const textSmg = {
     image: '/image/smartgovPict1.png',
     logo: '/image/logos/smartgov-svg.svg',
@@ -30,6 +31,7 @@ export default function Smartgov() {
     mid: t(dataProdukSmartgov[0].text1),
     end: t(dataProdukSmartgov[0].text2)
   }
+
   const urlLogo = [
     '/image/logoSmartgov/jakarta.png',
     '/image/logoSmartgov/bandung.png',
@@ -45,8 +47,8 @@ export default function Smartgov() {
     <div className='container mx-auto'>
       <Section1 textLogo={textSmg} />
 
-      <div className='my-20 flex flex-col items-center gap-8 md:flex-row'>
-        <div className='h-[400px] w-full flex-shrink-0 rounded-3xl bg-slate-500 md:h-[656px] md:w-[438px]'>
+      <div className='my-32 flex flex-col items-center gap-8 md:flex-row'>
+        <div className='h-[560px] w-full flex-shrink-0 rounded-3xl bg-slate-500 md:h-[752px] md:w-[438px]'>
           <img
             src={formattedTextEnter(t(dataProdukSmartgov[0].gambar1))}
             alt='Product Image'
@@ -54,14 +56,16 @@ export default function Smartgov() {
           />
         </div>
         <div className='misikami w-full md:w-auto'>
-          <p className='whitespace-pre-line text-xl md:text-2xl md:leading-9'>
+          <p className='whitespace-pre-line text-sm md:text-sm md:leading-5'>
             {formattedTextEnter(t(dataProdukSmartgov[0].text3))}
           </p>
         </div>
       </div>
 
-      <h2 className='mb-6 text-left text-2xl font-bold'>Pemerintah Daerah</h2>
-      <div className='my-20 flex flex-wrap items-center justify-center gap-12'>
+      <p className='mb-6 text-left text-2xl font-bold md:text-2xl'>
+        Pemerintah Daerah
+      </p>
+      <div className='my-32 flex flex-wrap items-center justify-center gap-12'>
         {urlLogo.map((url, index) => (
           <img
             key={index}
@@ -72,8 +76,11 @@ export default function Smartgov() {
         ))}
       </div>
 
-      <div className='my-20 flex justify-center'>
-        <Button className='rounded-3xl bg-[#0199CB] px-5 py-3 hover:bg-[#01b3ee] ' onClick={handleWhatsAppClick}>
+      <div className='my-32 flex justify-center'>
+        <Button
+          className='rounded-3xl bg-[#0199CB] px-5 py-3 hover:bg-[#01b3ee]'
+          onClick={handleWhatsAppClick}
+        >
           Ajukan Uji Coba
         </Button>
       </div>

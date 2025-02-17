@@ -2,148 +2,117 @@
 
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
-import Button from '../components/Button'
 import * as React from 'react'
-import moment from 'moment'
-
-interface ContentData {
-  image: string
-  title: string
-  description: string
-}
-
-// Tipe untuk mapping tahun ke data konten
-const contentData: Record<string, ContentData> = {
-  '2024': {
-    image: '/image/pDayat.png',
-    title: 'Judul untuk Tahun 2024',
-    description:
-      'Pak Dayat kepencet foto, eh jadi selfie di grup Cartenz Family 2024'
-  },
-  '2023': {
-    image: '/image/pDayat.png',
-    title: 'Judul untuk Tahun 2023',
-    description:
-      'Pak Dayat kepencet foto, eh jadi selfie di grup Cartenz Family 2023'
-  },
-  '2022': {
-    image: '/image/pDayat.png',
-    title: 'Judul untuk Tahun 2022',
-    description:
-      'Pak Dayat kepencet foto, eh jadi selfie di grup Cartenz Family 2022'
-  },
-  '2021': {
-    image: '/image/pDayat.png',
-    title: 'Judul untuk Tahun 2021',
-    description:
-      'Pak Dayat kepencet foto, eh jadi selfie di grup Cartenz Family 2021'
-  }
-}
+import { FiClock } from 'react-icons/fi'
+import Image from 'next/image' // Add this import
 
 export default function Informasi() {
   const t = useTranslations('')
-  const yearsArray = []
-  for (let i = 0; i < 4; i++) {
-    yearsArray.push(moment().subtract(i, 'years').format('YYYY'))
-  }
-  const [activeTab, setActiveTab] = React.useState(yearsArray[0])
 
   return (
     <div className='mt-[100px]'>
-      <section className='container py-8'>
-        <h1 className='mb-10 text-3xl font-bold'>Sosial Media</h1>
-        <div className='flex flex-wrap items-center justify-center gap-6 text-[24px] md:justify-between'>
+      {/* Social Media Section - Unchanged */}
+      <section className='container py-12'>
+        <h1 className='mb-12 text-center text-4xl font-bold text-gray-800 md:text-5xl'>
+          Follow Us on Social Media
+        </h1>
+
+        <div className='grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12'>
+          {/* TikTok */}
           <Link
-            href='https://www.instagram.com/cartenztechnology'
+            href='https://www.tiktok.com/@cartenztechnology'
             target='_blank'
-            className='flex flex-col justify-center'
+            className='group flex flex-col items-center p-6 transition-all duration-300 hover:scale-105'
           >
-            <img src='/image/tiktok.png' alt='tiktok' />
-            <p className='mt-4 font-bold'>@cartenz</p>
+            <div className='mb-4 rounded-2xl bg-white p-4 shadow-lg transition-colors duration-300 group-hover:bg-[#ff0050]'>
+              <Image
+                src='/image/tiktok.png'
+                alt='TikTok'
+                width={64} // Specify width
+                height={64} // Specify height
+                className='object-contain'
+              />
+            </div>
+            <p className='text-center text-lg font-semibold text-gray-600 transition-colors duration-300 group-hover:text-[#ff0050] md:text-xl'>
+              @cartenztechnology
+            </p>
           </Link>
+
+          {/* Instagram */}
           <Link
-            href='https://www.instagram.com/cartenztechnology'
+            href='https://www.instagram.com/cartenztechnology/'
             target='_blank'
-            className='flex flex-col justify-center'
+            className='group flex flex-col items-center p-6 transition-all duration-300 hover:scale-105'
           >
-            <img src='/image/instagram.png' alt='isntagram' />
-            <p className='mt-4 font-bold'>@cartenz</p>
+            <div className='mb-4 rounded-2xl bg-white p-4 shadow-lg transition-colors duration-300 group-hover:bg-[#e1306c]'>
+              <Image
+                src='/image/instagram.png'
+                alt='Instagram'
+                width={64} // Specify width
+                height={64} // Specify height
+                className='object-contain'
+              />
+            </div>
+            <p className='text-center text-lg font-semibold text-gray-600 transition-colors duration-300 group-hover:text-[#e1306c] md:text-xl'>
+              @cartenztechnology
+            </p>
           </Link>
+
+          {/* YouTube */}
           <Link
-            href='https://www.instagram.com/cartenztechnology'
+            href='https://www.youtube.com/channel/UCHS5IQaoNke7ony6tzzed0A'
             target='_blank'
-            className='flex flex-col justify-center'
+            className='group flex flex-col items-center p-6 transition-all duration-300 hover:scale-105'
           >
-            <img src='/image/youtube.png' alt='youtube' />
-            <p className='mt-4 font-bold'>@cartenz</p>
+            <div className='mb-4 rounded-2xl bg-white p-4 shadow-lg transition-colors duration-300 group-hover:bg-[#ff0000]'>
+              <Image
+                src='/image/youtube.png'
+                alt='YouTube'
+                width={64} // Specify width
+                height={64} // Specify height
+                className='object-contain'
+              />
+            </div>
+            <p className='text-center text-lg font-semibold text-gray-600 transition-colors duration-300 group-hover:text-[#ff0000] md:text-xl'>
+              @cartenztechnology
+            </p>
           </Link>
+
+          {/* Facebook */}
           <Link
-            href='https://www.instagram.com/cartenztechnology'
+            href='https://www.facebook.com/cartenztechnologyinternational'
             target='_blank'
-            className='flex flex-col justify-center'
+            className='group flex flex-col items-center p-6 transition-all duration-300 hover:scale-105'
           >
-            <img src='/image/twitterX.png' alt='twitterX' className='' />
-            <p className='mt-4 font-bold'>@cartenz</p>
-          </Link>
-          <Link
-            href='https://www.instagram.com/cartenztechnology'
-            target='_blank'
-            className='flex flex-col justify-center'
-          >
-            <img src='/image/facebook.png' alt='facebook' />
-            <p className='mt-4 font-bold'>@cartenz</p>
+            <div className='mb-4 rounded-2xl bg-white p-4 shadow-lg transition-colors duration-300 group-hover:bg-[#1877f2]'>
+              <Image
+                src='/image/facebook.png'
+                alt='Facebook'
+                width={64} // Specify width
+                height={64} // Specify height
+                className='object-contain'
+              />
+            </div>
+            <p className='text-center text-lg font-semibold text-gray-600 transition-colors duration-300 group-hover:text-[#1877f2] md:text-xl'>
+              @cartenztechnology
+            </p>
           </Link>
         </div>
       </section>
+
+      {/* News Section Changed to Coming Soon */}
       <section className='container mt-8 py-8'>
-        <h1 className='text-uppercase mb-10 text-3xl font-bold'>
-          Berita Terakhir
-        </h1>
-        <div className='md:flex'>
-          <ul className='flex-column text-sm font-medium text-gray-500 md:me-10 md:w-[126px]'>
-            {yearsArray.map(year => (
-              <li key={year}>
-                <a
-                  href='#'
-                  onClick={e => {
-                    e.preventDefault()
-                    setActiveTab(year)
-                  }}
-                  className={`inline-flex w-full items-center px-4 py-4 ${
-                    activeTab === year
-                      ? 'border-b-2 border-l-8 border-b-gray-300 border-l-[#0199CB] font-bold hover:bg-gray-100'
-                      : 'border-b-2 border-b-gray-300 hover:bg-gray-100 hover:text-gray-900'
-                  }`}
-                >
-                  {year}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className='text-medium w-full'>
-            {contentData[activeTab] && (
-              <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
-                {[...new Array(6)].map((_, i) => (
-                  <div className='flex flex-col gap-y-5' key={i}>
-                    <img
-                      src={contentData[activeTab].image}
-                      alt={contentData[activeTab].title}
-                      className='h-[405px] object-cover'
-                    />
-                    <p className='font-light'>{contentData[activeTab].title}</p>
-                    <p className='font-xl'>
-                      {contentData[activeTab].description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
+        <hr></hr>
+
+        <h1 className='mb-10 mt-10 text-3xl font-bold'>Berita</h1>
+        <div className='flex flex-col items-center justify-center py-24 text-center'>
+          <div className='mb-8 text-[#0199CB]'>
+            <FiClock className='text-8xl' />
           </div>
-        </div>
-        <div className='mt-20 flex justify-center'>
-          <Button rounded size='large' variant='outline'>
-            Lebih Banyak
-          </Button>
+          <h2 className='mb-4 text-4xl font-bold md:text-5xl'>Coming Soon</h2>
+          <p className='text-lg text-gray-600 md:text-xl'>
+            We&apos;re preparing something amazing for you. Please check back soon!
+          </p>
         </div>
       </section>
     </div>
