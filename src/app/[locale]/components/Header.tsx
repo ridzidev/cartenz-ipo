@@ -167,7 +167,7 @@ export const Header: FC<Props> = ({ locale }) => {
               locale={locale}
               onClick={handleOpen}
             >
-              Beranda
+              {t('hBeranda')}
             </NavItem>
             <NavItem
               href='/tentang-kami'
@@ -176,7 +176,7 @@ export const Header: FC<Props> = ({ locale }) => {
               locale={locale}
               onClick={handleOpen}
             >
-              Tentang Kami
+              {t('hTentangKami')}
             </NavItem>
             <NavItem
               href='/produk'
@@ -185,7 +185,7 @@ export const Header: FC<Props> = ({ locale }) => {
               locale={locale}
               onClick={handleOpen}
             >
-              Produk
+              {t('hProduk')}
             </NavItem>
             <NavItem
               href='/hubungan-investor'
@@ -194,7 +194,7 @@ export const Header: FC<Props> = ({ locale }) => {
               locale={locale}
               onClick={handleOpen}
             >
-              Hubungan Investor
+              {t('hHubunganInvestor')}
             </NavItem>
             <NavItem
               href='/informasi'
@@ -202,8 +202,9 @@ export const Header: FC<Props> = ({ locale }) => {
               isScrolling={isScrolling}
               locale={locale}
               onClick={handleOpen}
-            >
-              Informasi
+            >              
+            {t('hInformasi')}
+              
             </NavItem>
             <NavItem
               href='/karir'
@@ -212,7 +213,7 @@ export const Header: FC<Props> = ({ locale }) => {
               locale={locale}
               onClick={handleOpen}
             >
-              Karir
+              {t('hKarir')}
             </NavItem>
             <NavItem
               href='/hubungi-kami'
@@ -221,7 +222,7 @@ export const Header: FC<Props> = ({ locale }) => {
               locale={locale}
               onClick={handleOpen}
             >
-              Hubungi Kami
+              {t('hHubungi Kami')}
             </NavItem>
 
             <div className='flex items-center'>
