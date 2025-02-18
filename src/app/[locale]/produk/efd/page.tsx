@@ -52,8 +52,11 @@ export default function Efd() {
       </div>
 
       <div className='flex justify-center my-32'>
-        <Button className='rounded-3xl !bg-[#0199CB] !px-5 !py-3 hover:!bg-[#01b3ee]'>
-          Ajukan Uji Coba
+        <Button
+          className='rounded-3xl !bg-[#0199CB] !px-5 !py-3 hover:!bg-[#01b3ee]'
+          onClick={handleWhatsAppClick}
+        >
+            {t('ujicoba')}
         </Button>
       </div>
     </div>

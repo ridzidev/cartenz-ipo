@@ -24,10 +24,14 @@ export default function Citigov() {
     return <div>Error</div>
   }
 
+  if (!dataProdukCitigov || dataProdukCitigov.length === 0) {
+    return <div>No data available</div>
+  }
+
   const textCitigov = {
     image: '/image/citigovPict1.png',
     logo: '/image/logos/citigov-svg.svg',
-    first: 'Mendekatkan layanan pemerintah',
+    first: t('layananPemerintah'),
     mid: t(dataProdukCitigov[0].text1),
     end: t(dataProdukCitigov[0].text2)
   }
@@ -52,8 +56,12 @@ export default function Citigov() {
       </div>
 
       <div className='my-32 flex justify-center'>
-        <Button className='rounded-3xl !bg-[#0199CB] !px-5 !py-3 hover:!bg-[#01b3ee]' onClick={handleWhatsAppClick}>
-          Hubungi Kami
+        <Button
+          className='rounded-3xl !bg-[#0199CB] !px-5 !py-3 hover:!bg-[#01b3ee]'
+          onClick={handleWhatsAppClick}
+        >
+            {t('ujicoba')}
+
         </Button>
       </div>
     </div>

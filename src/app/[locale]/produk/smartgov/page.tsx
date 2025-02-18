@@ -63,7 +63,7 @@ export default function Smartgov() {
       </div>
 
       <p className='mb-6 text-left text-2xl font-bold md:text-2xl'>
-        Pemerintah Daerah
+        {t('pemda')}
       </p>
       <div className='my-32 flex flex-wrap items-center justify-center gap-12'>
         {urlLogo.map((url, index) => (
@@ -81,7 +81,7 @@ export default function Smartgov() {
           className='rounded-3xl bg-[#0199CB] px-5 py-3 hover:bg-[#01b3ee]'
           onClick={handleWhatsAppClick}
         >
-          Ajukan Uji Coba
+            {t('ujicoba')}
         </Button>
       </div>
     </div>
