@@ -14,7 +14,7 @@ export default function Karir() {
         <div className='absolute inset-0 h-full w-full bg-black/70' />
         <div className='container relative z-10 mx-auto my-auto flex h-full flex-col justify-center gap-10 text-white'>
           <h1 className='text-5xl font-bold md:text-[64px]'>
-            Karir
+          {t('karirhr').toUpperCase()}
           </h1>
         </div>
       </section>
@@ -25,11 +25,14 @@ export default function Karir() {
             <FiClock className="text-8xl" />
           </div>
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">
-            We’re not open right now
+            {t('karirh2')}
           </h2>
           <p className="text-lg text-gray-600 md:text-xl">
-            But feel free to send your CV to our email: <br />
-            <span className="font-bold text-[#0199CB]">hr@cartenz.co.id</span>
+            {t('karirh3')}
+            <br></br>
+            <a href="mailto:hrd@cartenz.co.id" className="font-bold text-[#0199CB]">
+              hrd@cartenz.co.id
+            </a>
           </p>
         </div>
       </section>
