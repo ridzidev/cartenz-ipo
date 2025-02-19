@@ -200,26 +200,40 @@ export default function TentangKami() {
         <hr className='mx-auto mb-12 mt-10 w-80 rounded-full border-t-4 border-blue-500' />
         {/* Section 3: Mission */}
         <div className='container relative'>
-          <div className='rounded-[40px] bg-tertiary px-6 py-12 md:py-24'>
-            <div className='mx-auto max-w-4xl'>
-              {/* Title with decorative element */}
-              <div className='mb-12 flex flex-col items-center md:mb-16'>
-                <h1 className='mb-6 text-center text-2xl font-bold uppercase md:text-3xl'>
-                  {t('MisiKami')}
-                </h1>
-                <div className='h-1 w-24 rounded-full bg-blue-500' />
-              </div>
+  <div
+    className='rounded-[40px] bg-tertiary px-6 py-12 md:py-24'
+    style={{
+      backgroundImage: `url(${dataPerkenalan[0].img2})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      position: 'relative',
+    }}
+  >
+    <div
+      className='absolute inset-0 bg-black opacity-50 rounded-[40px]'
+    />
+    <div className='relative mx-auto max-w-4xl bg-transparent p-6 rounded-lg'>
+      {/* Title with decorative element */}
+      <div className='mb-12 flex flex-col items-center md:mb-16'>
+        <h1 className='mb-6 text-center text-2xl font-bold uppercase md:text-3xl text-white'>
+          {t('MisiKami')}
+        </h1>
+        <div className='h-1 w-24 rounded-full bg-blue-500' />
+      </div>
 
-              {/* Content */}
-              <div className='space-y-8 text-center md:space-y-12'>
-                <p className='mx-auto max-w-2xl text-base leading-relaxed md:text-lg'>
-                  {t(dataMisiKami[0]['1'])}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Content */}
+      <div className='space-y-8 text-center md:space-y-12'>
+        <p className='mx-auto max-w-2xl text-base leading-relaxed md:text-lg text-white'>
+          {t(dataMisiKami[0]['1'])}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</section>
 
       <br></br>
     </div>
