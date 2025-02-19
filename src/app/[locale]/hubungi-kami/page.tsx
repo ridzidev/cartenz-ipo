@@ -56,7 +56,7 @@ export default function HubungiKami() {
 
       <section className='container mx-auto p-6'>
         <p className='my-10 text-lg md:text-2xl text-gray-700'>
-          We're excited to get to know you! Feel free to reach out to us.
+          We\'re excited to get to know you! Feel free to reach out to us.
         </p>
         <div className='w-full bg-gray-100 p-8 rounded-lg shadow-md'>
           <form ref={formRef} onSubmit={sendEmail}>
