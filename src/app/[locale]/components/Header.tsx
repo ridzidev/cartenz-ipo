@@ -167,140 +167,146 @@ export const Header: FC<Props> = ({ locale }) => {
   return (
     <>
       {/* Header */}
-      <div
-        className={`fixed top-0 z-50 mx-auto w-full border-0 md:h-[100px] ${isHomePage && isScrolling ? 'bg-secondary' : isHomePage ? 'bg-black bg-opacity-25' : 'bg-secondary'}`}
-      >
-        <div className='container mx-auto max-w-none px-6 lg:px-20 h-full items-center gap-6 py-5 text-white md:flex md:justify-between'>
-          <div className='flex w-full items-center justify-between md:w-auto'>
-            <Link
-              lang={locale}
-              href='/'
-              className='flex flex-1 items-center px-2 py-3 text-white'
-            >
-              {isHomePage && isScrolling ? (
-                <img
-                  src='/image/logo_cartenz_white.png'
-                  style={{ width: '150px', height: 'auto' }}
-                  alt='logoCartenz'
-                />
-              ) : isHomePage ? (
-                <img
-                  src='/image/logo_cartenz.png'
-                  style={{ width: '150px', height: 'auto' }}
-                  alt='logoCartenz'
-                />
-              ) : (
-                <img
-                  src='/image/logo_cartenz_white.png'
-                  style={{ width: '150px', height: 'auto' }}
-                  alt='logoCartenz'
-                />
-              )}
-            </Link>
-            {/* Mobile Menu Button */}
-            <div className='flex items-center md:hidden'>
-              <button className='mobile-menu-button' onClick={handleOpen}>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
+      {!open && (
+        <div
+          className={`fixed top-0 z-50 mx-auto w-full border-0 md:h-[100px] ${isHomePage && isScrolling ? 'bg-secondary' : isHomePage ? 'bg-black bg-opacity-25' : 'bg-secondary'} transition-transform duration-300`}
+        >
+          <div className='container mx-auto max-w-none px-6 lg:px-20 h-full items-center gap-6 py-5 text-white md:flex md:justify-between'>
+            <div className='flex w-full items-center justify-between md:w-auto'>
+              <Link
+                lang={locale}
+                href='/'
+                className='flex flex-1 items-center px-2 py-3 text-white'
+              >
+                {isHomePage && isScrolling ? (
+                  <img
+                    src='/image/logo_cartenz_white.png'
+                    style={{ width: '150px', height: 'auto' }}
+                    alt='logoCartenz'
+                  />
+                ) : isHomePage ? (
+                  <img
+                    src='/image/logo_cartenz.png'
+                    style={{ width: '150px', height: 'auto' }}
+                    alt='logoCartenz'
+                  />
+                ) : (
+                  <img
+                    src='/image/logo_cartenz_white.png'
+                    style={{ width: '150px', height: 'auto' }}
+                    alt='logoCartenz'
+                  />
+                )}
+              </Link>
+              {/* Mobile Menu Button */}
+              <div className='flex items-center md:hidden'>
+                <button
+                  className='mobile-menu-button'
+                  onClick={handleOpen}
+                  aria-label='Toggle Menu'
                 >
-                  <title>bars-3-bottom-left</title>
-                  <g fill='none'>
-                    <path
-                      d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12'
-                      stroke='currentColor'
-                      strokeWidth='1.5'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    ></path>
-                  </g>
-                </svg>
-              </button>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='24'
+                    height='24'
+                    viewBox='0 0 24 24'
+                  >
+                    <title>bars-3-bottom-left</title>
+                    <g fill='none'>
+                      <path
+                        d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12'
+                        stroke='currentColor'
+                        strokeWidth='1.5'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      ></path>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div className='w-full md:w-auto'>
+              <ul
+                className={`flex flex-col items-center justify-start gap-6 transition-all duration-100 ease-in-out md:flex-row md:gap-6 md:space-x-1 md:pb-0 ${
+                  open
+                    ? 'max-h-[500px] scale-100 opacity-100 bg-secondary'
+                    : 'max-h-0 scale-95 opacity-0'
+                } md:max-h-full md:scale-100 md:opacity-100`}
+              >
+                <NavItem
+                  href='/'
+                  isActive={pathname === `/${locale}`}
+                  isScrolling={isScrolling}
+                  locale={locale}
+                  onClick={handleOpen}
+                >
+                  {t('hBeranda')}
+                </NavItem>
+                <NavItem
+                  href='/tentang-kami'
+                  isActive={pathname === `/${locale}/tentang-kami`}
+                  isScrolling={isScrolling}
+                  locale={locale}
+                  onClick={handleOpen}
+                >
+                  {t('hTentangKami')}
+                </NavItem>
+                <NavItem
+                  href='/produk'
+                  isActive={isActivePage('/produk')}
+                  isScrolling={isScrolling}
+                  locale={locale}
+                  onClick={handleOpen}
+                >
+                  {t('hProduk')}
+                </NavItem>
+                <NavItem
+                  href='/hubungan-investor'
+                  isActive={pathname === `/${locale}/hubungan-investor`}
+                  isScrolling={isScrolling}
+                  locale={locale}
+                  onClick={handleOpen}
+                >
+                  {t('hHubunganInvestor')}
+                </NavItem>
+                <NavItem
+                  href='/informasi'
+                  isActive={pathname === `/${locale}/informasi`}
+                  isScrolling={isScrolling}
+                  locale={locale}
+                  onClick={handleOpen}
+                >
+                  {t('hInformasi')}
+                </NavItem>
+                <NavItem
+                  href='/karir'
+                  isActive={pathname === `/${locale}/karir`}
+                  isScrolling={isScrolling}
+                  locale={locale}
+                  onClick={handleOpen}
+                >
+                  {t('hKarir')}
+                </NavItem>
+                <NavItem
+                  href='/hubungi-kami'
+                  isActive={pathname === `/${locale}/hubungi-kami`}
+                  isScrolling={isScrolling}
+                  locale={locale}
+                  onClick={handleOpen}
+                >
+                  {t('hHubungi Kami')}
+                </NavItem>
+
+                <div className='flex items-center'>
+                  <LangSwitcher />
+                  <ThemeSwitch />
+                </div>
+              </ul>
             </div>
           </div>
-
-          <div className='w-full md:w-auto'>
-            <ul
-              className={`flex flex-col items-center justify-start gap-6 transition-all duration-100 ease-in-out md:flex-row md:gap-6 md:space-x-1 md:pb-0 ${
-                open
-                  ? 'max-h-[500px] scale-100 opacity-100 bg-secondary'
-                  : 'max-h-0 scale-95 opacity-0'
-              } md:max-h-full md:scale-100 md:opacity-100`}
-            >
-              <NavItem
-                href='/'
-                isActive={pathname === `/${locale}`}
-                isScrolling={isScrolling}
-                locale={locale}
-                onClick={handleOpen}
-              >
-                {t('hBeranda')}
-              </NavItem>
-              <NavItem
-                href='/tentang-kami'
-                isActive={pathname === `/${locale}/tentang-kami`}
-                isScrolling={isScrolling}
-                locale={locale}
-                onClick={handleOpen}
-              >
-                {t('hTentangKami')}
-              </NavItem>
-              <NavItem
-                href='/produk'
-                isActive={isActivePage('/produk')}
-                isScrolling={isScrolling}
-                locale={locale}
-                onClick={handleOpen}
-              >
-                {t('hProduk')}
-              </NavItem>
-              <NavItem
-                href='/hubungan-investor'
-                isActive={pathname === `/${locale}/hubungan-investor`}
-                isScrolling={isScrolling}
-                locale={locale}
-                onClick={handleOpen}
-              >
-                {t('hHubunganInvestor')}
-              </NavItem>
-              <NavItem
-                href='/informasi'
-                isActive={pathname === `/${locale}/informasi`}
-                isScrolling={isScrolling}
-                locale={locale}
-                onClick={handleOpen}
-              >
-                {t('hInformasi')}
-              </NavItem>
-              <NavItem
-                href='/karir'
-                isActive={pathname === `/${locale}/karir`}
-                isScrolling={isScrolling}
-                locale={locale}
-                onClick={handleOpen}
-              >
-                {t('hKarir')}
-              </NavItem>
-              <NavItem
-                href='/hubungi-kami'
-                isActive={pathname === `/${locale}/hubungi-kami`}
-                isScrolling={isScrolling}
-                locale={locale}
-                onClick={handleOpen}
-              >
-                {t('hHubungi Kami')}
-              </NavItem>
-
-              <div className='flex items-center'>
-                <LangSwitcher />
-                <ThemeSwitch />
-              </div>
-            </ul>
-          </div>
         </div>
-      </div>
+      )}
 
       {/* Sidebar for Mobile */}
       <div
@@ -321,7 +327,7 @@ export const Header: FC<Props> = ({ locale }) => {
                 alt='logoCartenz'
               />
             </Link>
-            <button onClick={handleOpen} className='text-white'>
+            <button onClick={handleOpen} className='text-white' aria-label='Close Menu'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='24'
