@@ -2,11 +2,10 @@
 
 import { Link } from '@/src/navigation'
 import { useTranslations } from 'next-intl'
-import { FC } from 'react'
+import { FC, useState, useEffect, useRef } from 'react'
 import LangSwitcher from './LangSwitcher'
 import ThemeSwitch from './ThemeSwitch'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 interface Props {
@@ -51,23 +50,17 @@ function NavItem({
   )
   const spanRef = useRef<HTMLSpanElement>(null)
 
-  // Function to compute max number of characters that can fit
   const computeMaxChars = () => {
-    // Early exit: if children is not a string or spanRef is not available.
     if (!spanRef.current || typeof children !== 'string') return
-  
-    // New condition: Only truncate when the viewport width is less than 1280px.
+
     if (window.innerWidth >= 1280) {
       setMaxLength(children.length)
       return
     }
-  
+
     const element = spanRef.current
     const availableWidth = element.offsetWidth
-
-    // Get computed style so we can measure text accurately
     const computedStyle = window.getComputedStyle(element)
-    // Use font property if available (includes size, family, weight, etc.)
     const font = computedStyle.font || `${computedStyle.fontSize} ${computedStyle.fontFamily}`
 
     const canvas = document.createElement('canvas')
@@ -75,16 +68,13 @@ function NavItem({
     if (!context) return
 
     context.font = font
-
     const fullText = children
 
-    // If full text fits, then no need to truncate.
     if (context.measureText(fullText).width <= availableWidth) {
       setMaxLength(fullText.length)
       return
     }
 
-    // Otherwise, use binary search to find the maximum number of characters that fits.
     let low = 0
     let high = fullText.length
     let best = 0
@@ -104,10 +94,7 @@ function NavItem({
   }
 
   useEffect(() => {
-    // Run the computation on mount
     computeMaxChars()
-
-    // Attach the window resize event listener so that when the width changes, we recalc.
     window.addEventListener('resize', computeMaxChars)
     return () => window.removeEventListener('resize', computeMaxChars)
   }, [children])
@@ -155,25 +142,24 @@ export const Header: FC<Props> = ({ locale }) => {
   const isHomePage = pathname === '/' + locale
 
   const handleOpen = () => setOpen(cur => !cur)
+
   useEffect(() => {
-    window.addEventListener(
-      'resize',
-      () => window.innerWidth >= 960 && setOpen(false)
-    )
+    const handleResize = () => {
+      if (window.innerWidth >= 960) {
+        setOpen(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   const isActivePage = (path: string) =>
     pathname.startsWith(`/${locale}${path}`)
 
   useEffect(() => {
-    function handleScroll() {
-      if (window.scrollY > 0) {
-        setIsScrolling(true)
-      } else {
-        setIsScrolling(false)
-      }
+    const handleScroll = () => {
+      setIsScrolling(window.scrollY > 0)
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -181,142 +167,140 @@ export const Header: FC<Props> = ({ locale }) => {
   return (
     <>
       {/* Header */}
-      {!open && (
-        <div
-          className={`fixed top-0 z-50 mx-auto w-full border-0 md:h-[100px] ${isHomePage && isScrolling ? 'bg-secondary' : isHomePage ? 'bg-black bg-opacity-25' : 'bg-secondary'}`}
-        >
-          <div className='container mx-auto max-w-none px-6 lg:px-20 h-full items-center gap-6 py-5 text-white md:flex md:justify-between'>
-            <div className='flex w-full items-center justify-between md:w-auto'>
-              <Link
-                lang={locale}
-                href='/'
-                className='flex flex-1 items-center px-2 py-3 text-white'
-              >
-                {isHomePage && isScrolling ? (
-                  <img
-                    src='/image/logo_cartenz_white.png'
-                    style={{ width: '150px', height: 'auto' }}
-                    alt='logoCartenz'
-                  />
-                ) : isHomePage ? (
-                  <img
-                    src='/image/logo_cartenz.png'
-                    style={{ width: '150px', height: 'auto' }}
-                    alt='logoCartenz'
-                  />
-                ) : (
-                  <img
-                    src='/image/logo_cartenz_white.png'
-                    style={{ width: '150px', height: 'auto' }}
-                    alt='logoCartenz'
-                  />
-                )}
-              </Link>
-              {/* Mobile Menu Button */}
-              <div className='flex items-center md:hidden'>
-                <button className='mobile-menu-button' onClick={handleOpen}>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    width='24'
-                    height='24'
-                    viewBox='0 0 24 24'
-                  >
-                    <title>bars-3-bottom-left</title>
-                    <g fill='none'>
-                      <path
-                        d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12'
-                        stroke='currentColor'
-                        strokeWidth='1.5'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      ></path>
-                    </g>
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <div className='w-full md:w-auto'>
-              <ul
-                className={`flex flex-col items-center justify-start gap-6 transition-all duration-100 ease-in-out md:flex-row md:gap-6 md:space-x-1 md:pb-0 ${
-                  open
-                    ? 'max-h-[500px] scale-100 opacity-100 bg-secondary'
-                    : 'max-h-0 scale-95 opacity-0'
-                } md:max-h-full md:scale-100 md:opacity-100`}
-              >
-                <NavItem
-                  href='/'
-                  isActive={pathname === `/${locale}`}
-                  isScrolling={isScrolling}
-                  locale={locale}
-                  onClick={handleOpen}
+      <div
+        className={`fixed top-0 z-50 mx-auto w-full border-0 md:h-[100px] ${isHomePage && isScrolling ? 'bg-secondary' : isHomePage ? 'bg-black bg-opacity-25' : 'bg-secondary'}`}
+      >
+        <div className='container mx-auto max-w-none px-6 lg:px-20 h-full items-center gap-6 py-5 text-white md:flex md:justify-between'>
+          <div className='flex w-full items-center justify-between md:w-auto'>
+            <Link
+              lang={locale}
+              href='/'
+              className='flex flex-1 items-center px-2 py-3 text-white'
+            >
+              {isHomePage && isScrolling ? (
+                <img
+                  src='/image/logo_cartenz_white.png'
+                  style={{ width: '150px', height: 'auto' }}
+                  alt='logoCartenz'
+                />
+              ) : isHomePage ? (
+                <img
+                  src='/image/logo_cartenz.png'
+                  style={{ width: '150px', height: 'auto' }}
+                  alt='logoCartenz'
+                />
+              ) : (
+                <img
+                  src='/image/logo_cartenz_white.png'
+                  style={{ width: '150px', height: 'auto' }}
+                  alt='logoCartenz'
+                />
+              )}
+            </Link>
+            {/* Mobile Menu Button */}
+            <div className='flex items-center md:hidden'>
+              <button className='mobile-menu-button' onClick={handleOpen}>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
                 >
-                  {t('hBeranda')}
-                </NavItem>
-                <NavItem
-                  href='/tentang-kami'
-                  isActive={pathname === `/${locale}/tentang-kami`}
-                  isScrolling={isScrolling}
-                  locale={locale}
-                  onClick={handleOpen}
-                >
-                  {t('hTentangKami')}
-                </NavItem>
-                <NavItem
-                  href='/produk'
-                  isActive={isActivePage('/produk')}
-                  isScrolling={isScrolling}
-                  locale={locale}
-                  onClick={handleOpen}
-                >
-                  {t('hProduk')}
-                </NavItem>
-                <NavItem
-                  href='/hubungan-investor'
-                  isActive={pathname === `/${locale}/hubungan-investor`}
-                  isScrolling={isScrolling}
-                  locale={locale}
-                  onClick={handleOpen}
-                >
-                  {t('hHubunganInvestor')}
-                </NavItem>
-                <NavItem
-                  href='/informasi'
-                  isActive={pathname === `/${locale}/informasi`}
-                  isScrolling={isScrolling}
-                  locale={locale}
-                  onClick={handleOpen}
-                >
-                  {t('hInformasi')}
-                </NavItem>
-                <NavItem
-                  href='/karir'
-                  isActive={pathname === `/${locale}/karir`}
-                  isScrolling={isScrolling}
-                  locale={locale}
-                  onClick={handleOpen}
-                >
-                  {t('hKarir')}
-                </NavItem>
-                <NavItem
-                  href='/hubungi-kami'
-                  isActive={pathname === `/${locale}/hubungi-kami`}
-                  isScrolling={isScrolling}
-                  locale={locale}
-                  onClick={handleOpen}
-                >
-                  {t('hHubungi Kami')}
-                </NavItem>
-
-                <div className='flex items-center'>
-                  <LangSwitcher />
-                  <ThemeSwitch />
-                </div>
-              </ul>
+                  <title>bars-3-bottom-left</title>
+                  <g fill='none'>
+                    <path
+                      d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12'
+                      stroke='currentColor'
+                      strokeWidth='1.5'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    ></path>
+                  </g>
+                </svg>
+              </button>
             </div>
           </div>
+
+          <div className='w-full md:w-auto'>
+            <ul
+              className={`flex flex-col items-center justify-start gap-6 transition-all duration-100 ease-in-out md:flex-row md:gap-6 md:space-x-1 md:pb-0 ${
+                open
+                  ? 'max-h-[500px] scale-100 opacity-100 bg-secondary'
+                  : 'max-h-0 scale-95 opacity-0'
+              } md:max-h-full md:scale-100 md:opacity-100`}
+            >
+              <NavItem
+                href='/'
+                isActive={pathname === `/${locale}`}
+                isScrolling={isScrolling}
+                locale={locale}
+                onClick={handleOpen}
+              >
+                {t('hBeranda')}
+              </NavItem>
+              <NavItem
+                href='/tentang-kami'
+                isActive={pathname === `/${locale}/tentang-kami`}
+                isScrolling={isScrolling}
+                locale={locale}
+                onClick={handleOpen}
+              >
+                {t('hTentangKami')}
+              </NavItem>
+              <NavItem
+                href='/produk'
+                isActive={isActivePage('/produk')}
+                isScrolling={isScrolling}
+                locale={locale}
+                onClick={handleOpen}
+              >
+                {t('hProduk')}
+              </NavItem>
+              <NavItem
+                href='/hubungan-investor'
+                isActive={pathname === `/${locale}/hubungan-investor`}
+                isScrolling={isScrolling}
+                locale={locale}
+                onClick={handleOpen}
+              >
+                {t('hHubunganInvestor')}
+              </NavItem>
+              <NavItem
+                href='/informasi'
+                isActive={pathname === `/${locale}/informasi`}
+                isScrolling={isScrolling}
+                locale={locale}
+                onClick={handleOpen}
+              >
+                {t('hInformasi')}
+              </NavItem>
+              <NavItem
+                href='/karir'
+                isActive={pathname === `/${locale}/karir`}
+                isScrolling={isScrolling}
+                locale={locale}
+                onClick={handleOpen}
+              >
+                {t('hKarir')}
+              </NavItem>
+              <NavItem
+                href='/hubungi-kami'
+                isActive={pathname === `/${locale}/hubungi-kami`}
+                isScrolling={isScrolling}
+                locale={locale}
+                onClick={handleOpen}
+              >
+                {t('hHubungi Kami')}
+              </NavItem>
+
+              <div className='flex items-center'>
+                <LangSwitcher />
+                <ThemeSwitch />
+              </div>
+            </ul>
+          </div>
         </div>
-      )}
+      </div>
 
       {/* Sidebar for Mobile */}
       <div
@@ -408,8 +392,9 @@ export const Header: FC<Props> = ({ locale }) => {
               isActive={pathname === `/${locale}/karir`}
               isScrolling={isScrolling}
               locale={locale}
-              onClick={handleOpen} >
-            {t('hKarir')}
+              onClick={handleOpen}
+            >
+              {t('hKarir')}
             </NavItem>
             <NavItem
               href='/hubungi-kami'
