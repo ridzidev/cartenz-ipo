@@ -1,4 +1,4 @@
-'use client' // Ensure this is a Client Component
+'use client'
 
 import { Link } from '@/src/navigation'
 import { useTranslations } from 'next-intl'
@@ -6,7 +6,7 @@ import { FC } from 'react'
 import LangSwitcher from './LangSwitcher'
 import ThemeSwitch from './ThemeSwitch'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 interface Props {
@@ -29,7 +29,6 @@ interface NavItemProps {
   onClick?: () => void
 }
 
-// Function to truncate text
 const truncateText = (text: string, maxLength: number) => {
   if (text.length <= maxLength) {
     return text
@@ -47,6 +46,71 @@ function NavItem({
 }: NavItemProps) {
   const pathname = usePathname()
   const isHomePage = pathname === '/' + locale
+  const [maxLength, setMaxLength] = useState<number>(
+    typeof children === 'string' ? children.length : 0
+  )
+  const spanRef = useRef<HTMLSpanElement>(null)
+
+  // Function to compute max number of characters that can fit
+  const computeMaxChars = () => {
+    // Early exit: if children is not a string or spanRef is not available.
+    if (!spanRef.current || typeof children !== 'string') return
+  
+    // New condition: Only truncate when the viewport width is less than 1280px.
+    if (window.innerWidth >= 1280) {
+      setMaxLength(children.length)
+      return
+    }
+  
+    const element = spanRef.current
+    const availableWidth = element.offsetWidth
+
+    // Get computed style so we can measure text accurately
+    const computedStyle = window.getComputedStyle(element)
+    // Use font property if available (includes size, family, weight, etc.)
+    const font = computedStyle.font || `${computedStyle.fontSize} ${computedStyle.fontFamily}`
+
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('2d')
+    if (!context) return
+
+    context.font = font
+
+    const fullText = children
+
+    // If full text fits, then no need to truncate.
+    if (context.measureText(fullText).width <= availableWidth) {
+      setMaxLength(fullText.length)
+      return
+    }
+
+    // Otherwise, use binary search to find the maximum number of characters that fits.
+    let low = 0
+    let high = fullText.length
+    let best = 0
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2)
+      const candidate = fullText.slice(0, mid) + '...'
+      const candidateWidth = context.measureText(candidate).width
+
+      if (candidateWidth <= availableWidth) {
+        best = mid
+        low = mid + 1
+      } else {
+        high = mid - 1
+      }
+    }
+    setMaxLength(best)
+  }
+
+  useEffect(() => {
+    // Run the computation on mount
+    computeMaxChars()
+
+    // Attach the window resize event listener so that when the width changes, we recalc.
+    window.addEventListener('resize', computeMaxChars)
+    return () => window.removeEventListener('resize', computeMaxChars)
+  }, [children])
 
   const borderColor = isHomePage
     ? isScrolling
@@ -60,8 +124,7 @@ function NavItem({
       : 'hover:border-[#0199cb]'
     : 'hover:border-yellow-500'
 
-  // Truncate the text to a maximum of 10 characters
-  const truncatedText = truncateText(children as string, 10)
+  const truncatedText = truncateText(children?.toString() || '', maxLength)
 
   return (
     <li>
@@ -72,7 +135,10 @@ function NavItem({
           isActive ? `rounded-sm border-b-4 py-2 ${borderColor}` : ''
         }`}
       >
-        <span className="block w-full truncate overflow-hidden text-ellipsis">
+        <span
+          ref={spanRef}
+          className="block w-full truncate overflow-hidden text-ellipsis"
+        >
           {truncatedText}
         </span>
       </Link>
@@ -109,7 +175,6 @@ export const Header: FC<Props> = ({ locale }) => {
     }
 
     window.addEventListener('scroll', handleScroll)
-
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -175,7 +240,7 @@ export const Header: FC<Props> = ({ locale }) => {
               <ul
                 className={`flex flex-col items-center justify-start gap-6 transition-all duration-100 ease-in-out md:flex-row md:gap-6 md:space-x-1 md:pb-0 ${
                   open
-                    ? 'max-h-[500px] scale-100 opacity-100 bg-secondary' // Added background color here
+                    ? 'max-h-[500px] scale-100 opacity-100 bg-secondary'
                     : 'max-h-0 scale-95 opacity-0'
                 } md:max-h-full md:scale-100 md:opacity-100`}
               >
@@ -343,9 +408,8 @@ export const Header: FC<Props> = ({ locale }) => {
               isActive={pathname === `/${locale}/karir`}
               isScrolling={isScrolling}
               locale={locale}
-              onClick={handleOpen}
-            >
-              {t('hKarir')}
+              onClick={handleOpen} >
+            {t('hKarir')}
             </NavItem>
             <NavItem
               href='/hubungi-kami'
