@@ -11,7 +11,6 @@ import InstagramIcon from '../../icons/instagram'
 import TiktokIcon from '../../icons/tiktok'
 import YoutubeIcon from '../../icons/youtube'
 
-// Define the types for the props
 interface SocialLink {
   href: string
   icon: React.ReactNode
@@ -45,35 +44,36 @@ export function Footer({
       href: 'https://www.facebook.com/cartenztechnologyinternational',
       icon: <FacebookIcon />,
       ariaLabel: 'Facebook',
-      colorClass: 'hover:text-blue-500 dark:hover:text-blue-400'
+      colorClass: 'hover:text-blue-600 dark:hover:text-blue-400'
     },
     {
       href: 'https://www.instagram.com/cartenztechnology/',
       icon: <InstagramIcon />,
       ariaLabel: 'Instagram',
-      colorClass: 'hover:text-pink-500 dark:hover:text-pink-400'
+      colorClass: 'hover:text-pink-600 dark:hover:text-pink-400'
     },
     {
       href: 'https://www.tiktok.com/@cartenztechnology',
       icon: <TiktokIcon />,
       ariaLabel: 'TikTok',
-      colorClass: 'hover:text-red-500 dark:hover:text-red-400'
+      colorClass: 'hover:text-red-600 dark:hover:text-red-400'
     },
     {
       href: 'https://www.youtube.com/channel/UCHS5IQaoNke7ony6tzzed0A',
       icon: <YoutubeIcon />,
       ariaLabel: 'YouTube',
-      colorClass: 'hover:text-red-600 dark:hover:text-red-500'
+      colorClass: 'hover:text-red-700 dark:hover:text-red-500'
     }
   ],
   productLinks = [
     {
       title: 'PRODUK',
       items: [
-        { name: 'Smartgov', path: 'smartgov', imgSrc: '/image/smartgov.png' },
         { name: 'EFD', path: 'efd', imgSrc: '/image/efd.png' },
         { name: 'Citigov', path: 'citigov', imgSrc: '/image/citigov.png' },
-        { name: 'Konsultan', path: 'konsultan', imgSrc: '/image/konsultan.png' }
+        { name: 'Konsultan', path: 'konsultan', imgSrc: '/image/konsultan.png' },
+        { name: 'Smartgov', path: 'smartgov', imgSrc: '/image/smartgov.png' }
+        
       ]
     }
   ],
@@ -94,9 +94,9 @@ export function Footer({
   }
 
   return (
-    <footer className='w-full bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'>
+    <footer className='w-full bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300'>
       <div className='relative w-full'>
-        <div className='relative mx-auto px-6 py-24 lg:px-20'>
+        <div className='relative mx-auto px-6 py-12 lg:px-20 lg:py-16'>
           <div className='border-t border-gray-300 dark:border-gray-700 pt-8'>
             <div className='grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12'>
               {/* Logo Section */}
@@ -107,7 +107,7 @@ export function Footer({
                     alt='Cartenz Logo'
                     width={200}
                     height={50}
-                    className='mb-4 max-w-full object-contain'
+                    className='mb-4 max-w-full object-contain dark:brightness-125'
                   />
                   <p
                     className='text-sm font-normal text-gray-600 dark:text-gray-400'
@@ -130,7 +130,7 @@ export function Footer({
                         href={social.href}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className={`flex size-8 items-center justify-center transition-colors ${social.colorClass}`}
+                        className={`flex size-8 items-center justify-center rounded-full bg-white dark:bg-gray-800 p-2 shadow-sm transition-all hover:shadow-md ${social.colorClass}`}
                         aria-label={social.ariaLabel}
                       >
                         {social.icon}
@@ -140,10 +140,10 @@ export function Footer({
                   <Button
                     size='large'
                     type='button'
-                    className='mt-4 inline-flex items-center gap-3 bg-blue-500 px-6 py-3 text-white transition-colors hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800'
+                    className='mt-4 inline-flex items-center gap-3 bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900'
                     onClick={handleWhatsAppClick}
                   >
-                    <FaWhatsapp size={24} />
+                    <FaWhatsapp size={20} />
                     <span className='text-sm md:text-base'>{t('contactUs')}</span>
                   </Button>
                 </div>
@@ -169,7 +169,7 @@ export function Footer({
                                 alt={`${name} icon`}
                                 width={32}
                                 height={32}
-                                className='object-contain'
+                                className='object-contain dark:brightness-125'
                               />
                               <Link
                                 href={linkHref}
@@ -188,7 +188,7 @@ export function Footer({
             </div>
 
             {/* Copyright Section */}
-            <div className='mt-12 text-center text-sm text-gray-600 dark:text-gray-400'>
+            <div className='mt-12 pt-8 text-center text-sm text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700'>
               © Copyright {CURRENT_YEAR} Cartenz Technology. All rights reserved.
             </div>
           </div>
