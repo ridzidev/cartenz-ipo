@@ -133,70 +133,72 @@ export default function TentangKami() {
       <div className='h-[150px] '></div>
 
       <section id='perkenalan' ref={perkenalanRef} className='mt-10'>
-        <div className='container w-full'>
-          {/* Section 1: Introduction */}
-          <div className='relative w-full overflow-hidden'>
-            {/* Full width wrapper */}
-            <div className='relative mx-auto grid max-w-[1440px] grid-cols-1 overflow-hidden rounded-[40px] md:grid-cols-2'>
-              {/* Centered container */}
-              {/* Background Image Container */}
-              <div className='absolute inset-0 z-0 h-full w-full'>
-                <img
-                  src={dataPerkenalan[0].img}
-                  alt='cartenzFamily'
-                  className='h-full w-full object-cover object-center'
-                />
-              </div>
-              {/* Left Content */}
-              <div className='relative z-10 bg-white/50 px-6 py-8 backdrop-blur-lg md:px-12 md:py-16'>
-                {/* Reduced padding */}
-                <h1 className='text-2xl font-bold md:text-3xl'>
-                  {t(dataPerkenalan[0].judul)}
-                </h1>
-                <p className='mt-6 text-base md:text-lg'>
-                  {t(dataPerkenalan[0].text)}
-                </p>
-              </div>
-              {/* Right Content - Empty Spacer */}
-              <div className='relative z-0 h-[150px] md:h-[300px]'>
-                <div className='absolute inset-0 bg-gradient-to-l from-white/30 via-white/10 to-transparent md:hidden' />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className='container w-full'>
+  {/* Section 1: Introduction */}
+  <div className='relative w-full overflow-hidden'>
+    {/* Full width wrapper */}
+    <div className='relative mx-auto grid max-w-[1440px] grid-cols-1 overflow-hidden rounded-[40px] md:grid-cols-2'>
+      {/* Centered container */}
+      {/* Background Image Container */}
+      <div className='absolute inset-0 z-0 h-full w-full'>
+        <img
+          src={dataPerkenalan[0].img}
+          alt='cartenzFamily'
+          className='h-full w-full object-cover object-center'
+        />
+      </div>
+      {/* Left Content */}
+      <div className='relative z-10 bg-black/50 px-6 py-8 backdrop-blur-lg md:px-12 md:py-16'>
+        {/* Use a darker background for better contrast */}
+        <h1 className='text-2xl font-bold md:text-5xl text-white'>
+          {t(dataPerkenalan[0].judul)}
+        </h1>
+        <p className='mt-6 text-base md:text-lg text-gray-200'>
+          {t(dataPerkenalan[0].text)}
+        </p>
+      </div>
+      {/* Right Content - Empty Spacer */}
+      <div className='relative z-0 h-[150px] md:h-[300px]'>
+        <div className='absolute inset-0 bg-gradient-to-l from-black/30 via-black/10 to-transparent md:hidden' />
+      </div>
+    </div>
+  </div>
+</div>
+
 
         {/* Section 2: Culture */}
         <div className='container px-6'>
-          <div className='rounded-[40px] py-20'>
-            <h1 className='customShadow my-10 text-center font-poppins text-5xl font-bold tracking-widest text-[#0199cb] lg:text-6xl lg:leading-[120px]'>
-              {t('Presisi')}
-            </h1>
-            <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4'>
-              {dataPresisi?.map((item: any, index: any) => (
-                <div
-                  className='overflow-hidden rounded-lg bg-background shadow-[0px_4px_4px_0px_#00000040]'
-                  key={index}
-                >
-                  <div
-                    className='relative'
-                    style={{ backgroundColor: item.color }}
-                  >
-                    <img
-                      className='h-28 w-full rounded-md object-cover'
-                      src={item.srcImg}
-                      alt='Random image'
-                    />
-                    <div className='absolute inset-0 flex items-center justify-center'>
-                      <h2 className='text-xl font-bold uppercase'>
-                        {t(item.judul)}
-                      </h2>
-                    </div>
-                  </div>
-                </div>
-              ))}
+  <div className='rounded-[40px] py-20 bg-light-background dark:bg-dark-background'>
+    <h1 className='customShadow my-10 text-center font-poppins text-5xl font-bold tracking-widest text-primary-light dark:text-primary-dark lg:text-6xl lg:leading-[120px]'>
+      {t('Presisi')}
+    </h1>
+    <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4'>
+    {dataPresisi?.map((item: any, index: any) => (
+        <div
+          className='overflow-hidden rounded-lg bg-light-card dark:bg-dark-card shadow-md'
+          key={index}
+        >
+          <div
+            className='relative'
+            style={{ backgroundColor: item.color }}
+          >
+            <img
+              className='h-28 w-full rounded-md object-cover'
+              src={item.srcImg}
+              alt={`Image for ${item.judul}`}
+            />
+            <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-50'>
+              <h2 className='text-xl font-bold uppercase text-white'>
+                {t(item.judul)}
+              </h2>
             </div>
           </div>
         </div>
+      ))}
+    </div>
+  </div>
+</div>
+
         <hr className='mx-auto mb-12 mt-10 w-80 rounded-full border-t-4 border-blue-500' />
         {/* Section 3: Mission */}
         <div className='container relative'>
