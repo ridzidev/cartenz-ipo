@@ -178,7 +178,7 @@ export default function HubungiKami() {
                 name='keperluan'
                 rows={5}
                 className='block w-full p-3 text-base border border-gray-300 dark:border-gray-600 rounded-md focus:border-blue-500 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100'
-                placeholder='Describe your inquiry'
+                placeholder={t('Describe your inquiry')}
                 required
               />
             </div>
