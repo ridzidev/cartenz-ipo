@@ -18,24 +18,26 @@ export default function Karir() {
           </h1>
         </div>
       </section>
+      <section className='container mx-auto min-h-[50vh] py-12'>
+  <div className='flex flex-col items-center justify-center py-24 text-center max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-12 border border-gray-200 dark:border-gray-700 animate-fade-in-up'>
+    <div className='mb-8 text-[#0199CB] dark:text-[#66CCFF]'>
+      <FiClock className='text-9xl' />
+    </div>
+    <h2 className='mb-4 text-5xl md:text-6xl font-bold text-gray-900 dark:text-white tracking-wide'>
+      {t('karirh2')}
+    </h2>
+    <p className='text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed'>
+      {t('karirh3')}
+    </p>
+    <br />
+    <p className='text-2xl md:text-3xl text-gray-600 dark:text-gray-300'>
+      <a href="mailto:hrd@cartenz.co.id" className="font-bold text-[#0199CB] hover:underline">
+        hrd@cartenz.co.id
+      </a>
+    </p>
+  </div>
+</section>
 
-      <section className="container mx-auto min-h-[50vh]">
-        <div className="flex flex-col items-center justify-center py-24 text-center">
-          <div className="mb-8 text-[#0199CB]">
-            <FiClock className="text-8xl" />
-          </div>
-          <h2 className="mb-4 text-4xl font-bold md:text-5xl">
-            {t('karirh2')}
-          </h2>
-          <p className="text-lg text-gray-600 md:text-xl">
-            {t('karirh3')}
-            <br></br>
-            <a href="mailto:hrd@cartenz.co.id" className="font-bold text-[#0199CB]">
-              hrd@cartenz.co.id
-            </a>
-          </p>
-        </div>
-      </section>
     </div>
   )
 }

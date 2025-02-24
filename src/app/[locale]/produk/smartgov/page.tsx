@@ -17,15 +17,15 @@ export default function Smartgov() {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div className="flex items-center justify-center h-screen">Loading...</div>
   }
 
   if (isError) {
-    return <div>Error</div>
+    return <div className="flex items-center justify-center h-screen">Error</div>
   }
 
   const textSmg = {
-    image: '/image/smartgovPict1.png',
+    image: t(dataProdukSmartgov[0].gambar2),
     logo: '/image/logos/smartgov-svg.svg',
     first: 'Smartgov',
     mid: t(dataProdukSmartgov[0].text1),
@@ -44,44 +44,44 @@ export default function Smartgov() {
   ]
 
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto px-4'>
       <Section1 textLogo={textSmg} />
 
-      <div className='my-32 flex flex-col items-center gap-8 md:flex-row'>
-        <div className='h-[560px] w-full flex-shrink-0 rounded-3xl bg-slate-500 md:h-[752px] md:w-[438px]'>
+      <div className='my-16 flex flex-col items-center gap-8 md:flex-row md:my-24'>
+        <div className='h-[350px] w-full flex-shrink-0 rounded-lg bg-slate-500 md:h-[450px] md:w-[300px]'>
           <img
             src={formattedTextEnter(t(dataProdukSmartgov[0].gambar1))}
             alt='Product Image'
-            className='h-full w-full rounded-3xl object-cover'
+            className='h-full w-full rounded-lg object-cover'
           />
         </div>
-        <div className='misikami w-full md:w-auto'>
-          <p className='whitespace-pre-line text-sm md:text-sm md:leading-5'>
+        <div className='misikami w-full md:w-auto md:pl-8'>
+          <p className='whitespace-pre-line text-lg md:text-xl md:leading-8'>
             {formattedTextEnter(t(dataProdukSmartgov[0].text3))}
           </p>
         </div>
       </div>
 
-      <p className='mb-6 text-left text-2xl font-bold md:text-2xl'>
+      <p className='mb-6 text-left text-2xl font-bold md:text-3xl md:mb-10'>
         {t('pemda')}
       </p>
-      <div className='my-32 flex flex-wrap items-center justify-center gap-12'>
+      <div className='my-16 flex flex-wrap items-center justify-center gap-12 md:my-24'>
         {urlLogo.map((url, index) => (
           <img
             key={index}
             src={url}
             alt={`Logo ${index}`}
-            className='h-20 w-auto'
+            className='h-16 w-auto md:h-20'
           />
         ))}
       </div>
 
-      <div className='my-32 flex justify-center'>
+      <div className='my-16 flex justify-center md:my-24'>
         <Button
-          className='rounded-3xl bg-[#0199CB] px-5 py-3 hover:bg-[#01b3ee]'
+          className='rounded-xl bg-[#0199CB] px-6 py-3 text-lg font-semibold hover:bg-[#01b3ee]'
           onClick={handleWhatsAppClick}
         >
-            {t('ujicoba')}
+          {t('ujicoba')}
         </Button>
       </div>
     </div>

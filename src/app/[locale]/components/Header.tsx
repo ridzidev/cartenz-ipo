@@ -153,9 +153,6 @@ export const Header: FC<Props> = ({ locale }) => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const isActivePage = (path: string) =>
-    pathname.startsWith(`/${locale}${path}`)
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolling(window.scrollY > 0)
@@ -163,6 +160,14 @@ export const Header: FC<Props> = ({ locale }) => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Added useEffect to reset 'open' state on pathname change
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
+  const isActivePage = (path: string) =>
+    pathname.startsWith(`/${locale}${path}`)
 
   return (
     <>

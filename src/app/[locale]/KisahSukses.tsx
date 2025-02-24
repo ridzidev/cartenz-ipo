@@ -3,6 +3,8 @@
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 interface IconProps {
   className?: string
@@ -32,11 +34,13 @@ const MapPinIcon = ({ className }: IconProps) => (
 
 export function KisahSukses() {
   const t = useTranslations('')
+  const { locale } = useParams()
   const kisahSuksesData = Array.from({ length: 3 }, (_, index) => ({
     pemda: t(`kisahSukses${index + 1}_pemda`),
     judul: t(`kisahSukses${index + 1}_judul`),
     isi: t(`kisahSukses${index + 1}_isi`),
-    foto: t(`kisahSukses${index + 1}_foto`)
+    foto: t(`kisahSukses${index + 1}_foto`),
+    tautan: t(`kisahSukses${index + 1}_tautan`)
   }))
 
   const responsive = {
@@ -62,6 +66,11 @@ export function KisahSukses() {
     }
   }
 
+  const getArticleLink = (tautan: string) => {
+    const basePath = window.location.pathname.split('/')[1] // Extract base path (e.g., "en" or "id")
+    return `/${basePath}/article/${tautan}` // Construct the new path
+  }
+
   return (
     <div className='rounded-t-[40px] bg-tertiary py-8 dark:bg-gray-900'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
@@ -81,7 +90,7 @@ export function KisahSukses() {
             itemClass='px-2'
             dotListClass='!mt-8 [&>li:not(.react-multi-carousel-dot--active)>button]:bg-gray-300 [&>li:not(.react-multi-carousel-dot--active)>button]:dark:bg-gray-600'
           >
-            {kisahSuksesData.map(({ pemda, judul, isi, foto }, index) => (
+            {kisahSuksesData.map(({ pemda, judul, isi, foto, tautan }, index) => (
               <div
                 key={index}
                 className='h-full min-h-[400px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800 md:rounded-3xl md:hover:scale-[1.02]'
@@ -112,7 +121,9 @@ export function KisahSukses() {
                       </p>
                     </div>
                     <button className='mt-4 flex w-fit items-center gap-2 text-blue-600 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'>
-                      <span className='text-sm font-semibold'>Read More</span>
+                      <Link href={getArticleLink(tautan)} className='text-sm font-semibold'>
+                        {t('Read More')}
+                      </Link>
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
                         className='h-4 w-4 transition-transform group-hover:translate-x-1'
