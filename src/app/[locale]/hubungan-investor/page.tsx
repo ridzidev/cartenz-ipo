@@ -17,7 +17,7 @@ export default function HubunganInvestor() {
         <div className='absolute inset-0 h-full w-full bg-black/70' />
         <div className='container relative z-10 mx-auto my-auto flex h-full flex-col justify-center gap-10 text-white'>
           <h1 className='text-5xl font-bold md:text-[64px]'>
-            Hubungan Investor
+            {t('Hubungan Investor')}
           </h1>
         </div>
       </section>
