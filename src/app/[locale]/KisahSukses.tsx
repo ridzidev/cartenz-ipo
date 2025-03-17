@@ -72,7 +72,7 @@ export function KisahSukses() {
   }
 
   return (
-    <div className='rounded-t-[40px] bg-tertiary py-8 dark:bg-gray-900'>
+    <div className='bg-tertiary py-8 dark:bg-gray-900'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         <h2 className='mb-8 text-center text-2xl font-bold text-gray-800 dark:text-gray-100 md:mb-12 md:text-3xl'>
           {t('kisahSukses')}
@@ -120,7 +120,7 @@ export function KisahSukses() {
                         {isi}
                       </p>
                     </div>
-                    <button className='mt-4 flex w-fit items-center gap-2 text-blue-600 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'>
+                    {/* <button className='mt-4 flex w-fit items-center gap-2 text-blue-600 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'>
                       <Link href={getArticleLink(tautan)} className='text-sm font-semibold'>
                         {t('Read More')}
                       </Link>
@@ -138,7 +138,7 @@ export function KisahSukses() {
                           d='M9 5l7 7-7 7'
                         />
                       </svg>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
