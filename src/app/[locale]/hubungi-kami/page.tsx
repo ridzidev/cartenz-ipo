@@ -84,7 +84,7 @@ export default function HubungiKami() {
               >
                 <option value='' disabled>{t('selectProduct')}</option>
                 <option value='SmartGov'>SmartGov</option>
-                <option value='CityGov'>CityGov</option>
+                <option value='CitiGov'>CitiGov</option>
                 <option value='EFD'>EFD</option>
                 <option value='Consultant'>{t('consultant')}</option>
                 <option value='Other'>{t('other')}</option>

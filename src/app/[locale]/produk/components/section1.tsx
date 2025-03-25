@@ -14,11 +14,11 @@ export const Section1: React.FC<Section1Props> = ({ textLogo }) => (
       {/* Kolom Kiri (66%) */}
       <div className="flex w-full flex-col gap-10 text-2xl md:w-2/3">
         <img src={textLogo.logo} alt="logo" className="w-[320px] mt-10" />
-        <p className="text-2xl font-bold leading-[32px] md:text-3xl">{textLogo.first}</p>
+        <p className="whitespace-pre-line text-lg md:text-xl md:leading-8">{textLogo.first}</p>
         <div className="misikami">
-          <p className="w-full text-sm md:text-lg">{textLogo.mid}</p>
+          <p className="whitespace-pre-line text-lg md:text-xl md:leading-8">{textLogo.mid}</p>
         </div>
-        <p className="text-sm md:text-lg">{textLogo.end}</p>
+        <p className="whitespace-pre-line text-lg md:text-xl md:leading-8">{textLogo.end}</p>
       </div>
 
       {/* Kolom Kanan (34%) */}
